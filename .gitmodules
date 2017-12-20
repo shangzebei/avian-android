@@ -1,0 +1,3 @@
+[submodule "ndk-lib"]
+	path = ndk-lib
+	url = git@gitee.com:happy-body/ndk-lib.git
