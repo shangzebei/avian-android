@@ -865,7 +865,7 @@ class MySystem : public System {
 
   virtual Status load(System::Library** lib, const char* name)
   {
-    fprintf(stdout,"dlopen %s \n",name);
+    fprintf(stdout,"dlopen %s \n",BOOTSTRAP_PROPERTY);
     unsigned nameLength = (name ? strlen(name) : 0);
     bool isMain = name == 0;
     if (isMain) {
