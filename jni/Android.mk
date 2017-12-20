@@ -18,8 +18,6 @@ LOCAL_PATH := $(call my-dir)
 
 include $(call all-subdir-makefiles)
 $(call import-add-path,$(LOCAL_PATH)/../..)
-#$(call import-add-path,$(LOCAL_PATH))
-#$(call import-module,classpath)
 $(call import-module,ndk-lib/expatlib/android)
 $(call import-module,ndk-lib/fdlibmlib/android)
 $(call import-module,ndk-lib/iculib/android)
