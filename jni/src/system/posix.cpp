@@ -118,7 +118,7 @@ void pathOfExecutable(System* s, const char** retBuf, unsigned* size)
 #endif
 }
 
-const bool Verbose = false;
+const bool Verbose = true;
 
 const unsigned Notified = 1 << 0;
 

@@ -239,6 +239,7 @@ namespace vm {
 
 void resolveNative(Thread* t, GcMethod* method)
 {
+  fprintf(stdout,"resolveNative process.cpp 240 \n");
   PROTECT(t, method);
 
   assertT(t, method->flags() & ACC_NATIVE);
