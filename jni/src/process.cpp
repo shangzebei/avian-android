@@ -224,7 +224,7 @@ GcNative* resolveNativeMethod(Thread* t, GcMethod* method)
   if (p) {
     return makeNative(t, p, true);
   }
-
+  printf("resolveNativeMethod");
   p = resolveNativeMethod(t, method, "Java_", 5, -1);
   if (p) {
     return makeNative(t, p, false);

@@ -20,13 +20,6 @@
 #elif defined(__ANDROID__)
 #include <asm/sigcontext.h> /* for sigcontext */
 #include <asm/signal.h>     /* for stack_t */
-// typedef struct ucontext {
-//   unsigned long uc_flags;
-//   struct ucontext* uc_link;
-//   stack_t uc_stack;
-//   struct sigcontext uc_mcontext;
-//   unsigned long uc_sigmask;
-// } ucontext_t;
 #else
 #if defined __FreeBSD__
 #include "limits.h"
@@ -872,6 +865,7 @@ class MySystem : public System {
 
   virtual Status load(System::Library** lib, const char* name)
   {
+    fprintf(stdout,"dlopen %s \n",name);
     unsigned nameLength = (name ? strlen(name) : 0);
     bool isMain = name == 0;
     if (isMain) {

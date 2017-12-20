@@ -3753,7 +3753,7 @@ Machine::Machine(System* system,
   if (codeLibraryName && (codeLibraryNameEnd
                           = strchr(codeLibraryName, system->pathSeparator())))
     *codeLibraryNameEnd = 0;
-
+  fprintf(stdout, "open---------  \n");
   if (not system->success(system->make(&localThread))
       or not system->success(system->make(&stateLock))
       or not system->success(system->make(&heapLock))
