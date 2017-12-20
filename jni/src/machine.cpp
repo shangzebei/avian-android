@@ -3743,6 +3743,7 @@ Machine::Machine(System* system,
   }
 
   const char* bootstrapProperty = findProperty(this, BOOTSTRAP_PROPERTY);
+  fprint(stdout,"bootstrapProperty = %s \n",bootstrapProperty);
   const char* bootstrapPropertyDup
       = bootstrapProperty ? strdup(bootstrapProperty) : 0;
   const char* bootstrapPropertyEnd
