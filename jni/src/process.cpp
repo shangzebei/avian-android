@@ -135,7 +135,7 @@ void* resolveNativeMethod(Thread* t,
                           const char* undecorated,
                           const char* decorated)
 {
-  fprintf(stdout,"resolveNativeMethod");
+  fprintf(stdout,"resolveNativeMethod \n");
   for (System::Library* lib = t->m->libraries; lib; lib = lib->next()) {
     fprintf(stdout,"%s \n",undecorated);
     void* p = lib->resolve(undecorated);
