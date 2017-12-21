@@ -135,20 +135,20 @@ void* resolveNativeMethod(Thread* t,
                           const char* undecorated,
                           const char* decorated)
 {
-  fprintf(stdout,"resolveNativeMethod \n");
   for (System::Library* lib = t->m->libraries; lib; lib = lib->next()) {
-    fprintf(stdout,"%s \n",undecorated);
+    fprintf(stdout,"undecorated == %s \n",undecorated);
     void* p = lib->resolve(undecorated);
     if (p) {
       return p;
     } else {
+      fprintf(stdout,"decorated == %s \n",decorated);
       p = lib->resolve(decorated);
       if (p) {
         return p;
       }
     }
   }
-
+  fprintf(stdout,"fail decorated = %s ,undecorated = %s \n",decorated,undecorated);
   return 0;
 }
 
@@ -226,9 +226,10 @@ GcNative* resolveNativeMethod(Thread* t, GcMethod* method)
   if (p) {
     return makeNative(t, p, true);
   }
-  printf("resolveNativeMethod");
+  
   p = resolveNativeMethod(t, method, "Java_", 5, -1);
   if (p) {
+  	printf("ok \n");
     return makeNative(t, p, false);
   }
 
@@ -241,7 +242,7 @@ namespace vm {
 
 void resolveNative(Thread* t, GcMethod* method)
 {
-  fprintf(stdout,"resolveNative process.cpp 240 \n");
+
   PROTECT(t, method);
 
   assertT(t, method->flags() & ACC_NATIVE);

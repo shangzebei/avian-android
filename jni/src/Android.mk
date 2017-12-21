@@ -6,9 +6,10 @@ LOCAL_MODULE    := jvm
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../include
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../aviantype
 LOCAL_EXPORT_C_INCLUDES:= $(LOCAL_PATH)/../include
-LOCAL_LDLIBS := -lz
-LOCAL_LDFLAGS := -fPIC
-LOCAL_STATIC_LIBRARIES += expat_static fdlibm_static classpath
+LOCAL_LDLIBS := -ldl -lz
+#LOCAL_LDFLAGS := -fPIC 
+LOCAL_WHOLE_STATIC_LIBRARIES += classpath
+LOCAL_STATIC_LIBRARIES += expat_static fdlibm_static 
 LOCAL_SRC_FILES :=  \
 					system/posix.cpp \
 					system/posix/crash.cpp \
@@ -56,7 +57,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE    := java
-LOCAL_LDLIBS := -ldl
+#LOCAL_LDLIBS := -ldl
 LOCAL_LDFLAGS := -fPIC -pie
 LOCAL_SRC_FILES := main.cpp
 LOCAL_STATIC_LIBRARIES:=jvm

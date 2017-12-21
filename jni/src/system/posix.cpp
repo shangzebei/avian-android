@@ -571,6 +571,7 @@ class MySystem : public System {
 
     virtual void* resolve(const char* function)
     {
+      fprintf(stdout,"resolve-dlsym= %s \n",function);
       return dlsym(p, function);
     }
 
@@ -891,6 +892,7 @@ class MySystem : public System {
 
       *lib = new (allocate(this, sizeof(Library)))
           Library(this, p, n, nameLength, isMain);
+      
 
       return 0;
     } else {
