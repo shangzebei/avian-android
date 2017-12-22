@@ -7786,7 +7786,9 @@ uint64_t invokeNative(MyThread* t)
 
   t->trace->targetMethod = t->trace->nativeMethod;
 
+  fprintf(stdout,"begin");
   t->m->classpath->resolveNative(t, t->trace->nativeMethod);
+  fprintf(stdout,"end");
 
   result = invokeNative2(t, t->trace->nativeMethod);
 
