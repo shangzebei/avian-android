@@ -8,6 +8,7 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/../aviantype
 LOCAL_EXPORT_C_INCLUDES:= $(LOCAL_PATH)/../include
 LOCAL_LDLIBS := -ldl -lz
 #LOCAL_LDFLAGS := -fPIC 
+#LOCAL_CFLAGS := -D__STDC_CONSTANT_MACROS -Wl,-Map=test.map -g 
 LOCAL_WHOLE_STATIC_LIBRARIES += classpath
 LOCAL_STATIC_LIBRARIES += expat_static fdlibm_static 
 LOCAL_SRC_FILES :=  \

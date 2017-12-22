@@ -1145,7 +1145,9 @@ extern "C" JNIEXPORT jfloat JNICALL
 extern "C" JNIEXPORT jdouble JNICALL
     Java_java_lang_Math_sin(JNIEnv*, jclass, jdouble val)
 {
-  return sin(val);
+   fprintf(stdout,"native Java_java_lang_Math_sin");
+   return sin(val);
+ 
 }
 
 extern "C" JNIEXPORT jdouble JNICALL
