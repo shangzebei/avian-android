@@ -11,6 +11,7 @@ LOCAL_LDLIBS := -ldl -lz
 #LOCAL_CFLAGS := -D__STDC_CONSTANT_MACROS -Wl,-Map=test.map -g 
 LOCAL_WHOLE_STATIC_LIBRARIES += classpath
 LOCAL_STATIC_LIBRARIES += expat_static fdlibm_static 
+#LOCAL_FILTER_ASM := arm.masm 
 LOCAL_SRC_FILES :=  \
 					system/posix.cpp \
 					system/posix/crash.cpp \

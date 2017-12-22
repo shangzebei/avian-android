@@ -862,11 +862,9 @@ extern "C" JNIEXPORT jobjectArray JNICALL
 #endif
 
 #ifdef PLATFORM_WINDOWS
-  e->SetObjectArrayElement(
-      array, index++, e->NewStringUTF("line.separator=\r\n"));
+  e->SetObjectArrayElement(array, index++, e->NewStringUTF("line.separator=\r\n"));
 
-  e->SetObjectArrayElement(
-      array, index++, e->NewStringUTF("file.separator=\\"));
+  e->SetObjectArrayElement(array, index++, e->NewStringUTF("file.separator=\\"));
 
   e->SetObjectArrayElement(array, index++, e->NewStringUTF("path.separator=;"));
 

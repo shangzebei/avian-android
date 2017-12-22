@@ -12,5 +12,6 @@ cflags += -DAVIAN_EMBED_PREFIX=\"\" #binary 位置
 cflags += -DAVIAN_VERSION=\"1.3.0-SNAPSHOT\" #jar version
 cflags += -DAVIAN_TARGET_FORMAT=AVIAN_FORMAT_ELF
 cflags += -DBOOT_LIBRARY=\"libjvm.so\"
+cflags += -marm -ftree-vectorize -ffast-math -mfloat-abi=softfp
 APP_CFLAGS := $(cflags)
 APP_OPTIM := debug

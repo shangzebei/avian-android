@@ -59,7 +59,7 @@ namespace {
 namespace local {
 
 const bool DebugCompile = false;
-const bool DebugNatives = false;
+const bool DebugNatives = true;
 const bool DebugCallTable = false;
 const bool DebugMethodTree = false;
 const bool DebugInstructions = false;
@@ -7604,7 +7604,6 @@ uint64_t invokeNativeSlow(MyThread* t, GcMethod* method, void* function)
 
   GcJclass* jclass = 0;
   PROTECT(t, jclass);
-
   if (method->flags() & ACC_STATIC) {
     jclass = getJClass(t, method->class_());
     RUNTIME_ARRAY_BODY(args)[argOffset++]
@@ -7613,14 +7612,13 @@ uint64_t invokeNativeSlow(MyThread* t, GcMethod* method, void* function)
     RUNTIME_ARRAY_BODY(args)[argOffset++] = reinterpret_cast<uintptr_t>(sp++);
   }
   RUNTIME_ARRAY_BODY(types)[typeOffset++] = POINTER_TYPE;
-
-  MethodSpecIterator it(
-      t, reinterpret_cast<const char*>(method->spec()->body().begin()));
-
+  fprintf(stdout,"bbbbb== %s \n",reinterpret_cast<const char*>(method->spec()->body().begin()));
+  MethodSpecIterator it(t, reinterpret_cast<const char*>(method->spec()->body().begin()));
+  fprintf(stdout,"aaaaa== %d \n",it.hasNext());
   while (it.hasNext()) {
     unsigned type = RUNTIME_ARRAY_BODY(types)[typeOffset++]
         = fieldType(t, fieldCode(t, *it.next()));
-
+    fprintf(stdout,"hhhhhhhhhhhhh==%d \n",type);
     switch (type) {
     case INT8_TYPE:
     case INT16_TYPE:
@@ -7644,12 +7642,13 @@ uint64_t invokeNativeSlow(MyThread* t, GcMethod* method, void* function)
       }
       ++sp;
     } break;
-
+    fprintf(stdout,"hhhhhhhhhhhhh\n");
     default:
+    fprintf(stdout,"aaaaaaaaaaaaaaa\n");
       abort(t);
     }
   }
-
+  fprintf(stdout,"ccccccccccccc \n");
   unsigned returnCode = method->returnCode();
   unsigned returnType = fieldType(t, returnCode);
   uint64_t result;
@@ -7753,13 +7752,13 @@ uint64_t invokeNativeSlow(MyThread* t, GcMethod* method, void* function)
 
 uint64_t invokeNative2(MyThread* t, GcMethod* method)
 {
-  fprintf(stdout,"invokeNative2");
+  fprintf(stdout,"invokeNative2 \n");
   GcNative* native = getMethodRuntimeData(t, method)->native();
   if (native->fast()) {
-    fprintf(stdout,"invokeNativeFast");
+    fprintf(stdout,"invokeNativeFast \n");
     return invokeNativeFast(t, method, native->function());
   } else {
-     fprintf(stdout,"invokeNativeSlow");
+     fprintf(stdout,"invokeNativeSlow \n");
     return invokeNativeSlow(t, method, native->function());
   }
 }
