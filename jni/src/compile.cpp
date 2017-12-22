@@ -7753,10 +7753,13 @@ uint64_t invokeNativeSlow(MyThread* t, GcMethod* method, void* function)
 
 uint64_t invokeNative2(MyThread* t, GcMethod* method)
 {
+  fprintf(stdout,"invokeNative2");
   GcNative* native = getMethodRuntimeData(t, method)->native();
   if (native->fast()) {
+    fprintf(stdout,"invokeNativeFast");
     return invokeNativeFast(t, method, native->function());
   } else {
+     fprintf(stdout,"invokeNativeSlow");
     return invokeNativeSlow(t, method, native->function());
   }
 }
@@ -7786,11 +7789,12 @@ uint64_t invokeNative(MyThread* t)
 
   t->trace->targetMethod = t->trace->nativeMethod;
 
-  fprintf(stdout,"begin");
+  fprintf(stdout,"begin \n");
   t->m->classpath->resolveNative(t, t->trace->nativeMethod);
-  fprintf(stdout,"end");
+  
 
   result = invokeNative2(t, t->trace->nativeMethod);
+  fprintf(stdout,"end \n");
 
   unsigned parameterFootprint = t->trace->targetMethod->parameterFootprint();
 
