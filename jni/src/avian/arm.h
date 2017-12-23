@@ -272,6 +272,7 @@ inline uint64_t dynamicCall(void* function,
                             unsigned argumentsSize UNUSED,
                             unsigned returnType)
 {
+
 #if (defined __APPLE__) || (defined ARCH_arm64)
   const unsigned Alignment = 1;
 #else
@@ -296,6 +297,7 @@ inline uint64_t dynamicCall(void* function,
 
   unsigned ai = 0;
   for (unsigned ati = 0; ati < argumentCount; ++ati) {
+    fprintf(stdout,"dynamicCall  %d \n",argumentTypes[ati]);
     switch (argumentTypes[ati]) {
     case DOUBLE_TYPE:
 #if (defined __ARM_PCS_VFP) || (defined ARCH_arm64)
@@ -389,6 +391,7 @@ inline uint64_t dynamicCall(void* function,
   }
 
   unsigned stackSize = pad(stackIndex * BytesPerWord + stackSubIndex, 16);
+  fprintf(stdout,"vmNativeCall function= %d \n",function);
   return vmNativeCall(function,
                       stackSize,
                       RUNTIME_ARRAY_BODY(stack),
