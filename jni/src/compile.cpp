@@ -7648,7 +7648,7 @@ uint64_t invokeNativeSlow(MyThread* t, GcMethod* method, void* function)
       abort(t);
     }
   }
-  fprintf(stdout,"ccccccccccccc \n");
+  
   unsigned returnCode = method->returnCode();
   unsigned returnType = fieldType(t, returnCode);
   uint64_t result;
@@ -7659,7 +7659,7 @@ uint64_t invokeNativeSlow(MyThread* t, GcMethod* method, void* function)
             method->class_()->name()->body().begin(),
             method->name()->body().begin());
   }
-
+  
   if (method->flags() & ACC_SYNCHRONIZED) {
     if (method->flags() & ACC_STATIC) {
       acquire(t, getJClass(t, method->class_()));
@@ -7676,13 +7676,15 @@ uint64_t invokeNativeSlow(MyThread* t, GcMethod* method, void* function)
     bool noThrow = t->checkpoint->noThrow;
     t->checkpoint->noThrow = true;
     THREAD_RESOURCE(t, bool, noThrow, t->checkpoint->noThrow = noThrow);
-
+    fprintf(stdout,"ccccccccccccc \n");
     result = vm::dynamicCall(function,
                              RUNTIME_ARRAY_BODY(args),
                              RUNTIME_ARRAY_BODY(types),
                              count,
                              footprint * BytesPerWord,
                              returnType);
+    // result = 3000;
+     fprintf(stdout,"dddddddddddddd \n");
   }
 
   if (method->flags() & ACC_SYNCHRONIZED) {
