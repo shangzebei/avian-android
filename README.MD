@@ -1,7 +1,7 @@
 ### get 
 before you build ,you must set the NDK in path
 ```
-git clone git clone --recursive https://github.com/shangzebei/avian-android.git
+git clone --recursive https://github.com/shangzebei/avian-android.git
 cd avian-android
 ndk-build
 ```
